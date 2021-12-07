@@ -19,4 +19,4 @@
 |      Path     |  Permissions  | Behavior |
 | --- | --- | --- |
 | /             |     Public    | Login, if you already login well show your tasks |
-| /register             |     Public    |  |
+| /register | Public | Register new user |
