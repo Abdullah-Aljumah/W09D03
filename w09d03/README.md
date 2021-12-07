@@ -56,3 +56,12 @@ role model
  role: { type: String },
   permossion: { type: Array },
 ```
+
+Backend routes
+| HTTP METHOD | URL | Permissions | Behavior |
+| ---- | --------- | ----------- | ------ |
+| POST| /newTask/:\_id | Public | Create new task |
+| PUT| /deletetask/:\_id | Public | Soft delete task |
+| PUT| /update/:\_id | Public | Toggle is complete (true / false) |
+| PUT| /upadteVal/:\_id | Public | Update task |
+| GET| /tasks | Private | Update task |
