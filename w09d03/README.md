@@ -16,7 +16,15 @@
 
 # Todo fronend
 
-|      Path     |  Permissions  | Behavior |
-| --- | --- | --- |
-| /             |     Public    | Login, if you already login well show your tasks |
-| /register | Public | Register new user |
+| Path      | Permissions | Behavior                                             |
+| --------- | ----------- | ---------------------------------------------------- |
+| /         | Public      | Login, if you already login well show all your tasks |
+| /register | Public      | Register new user                                    |
+
+# Components
+
+- **Login**
+
+- **Register**
+
+- **Tasks**
