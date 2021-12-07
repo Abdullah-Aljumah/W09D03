@@ -8,7 +8,7 @@ const Register = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-      // eslint-disable-next-line
+  // eslint-disable-next-line
   const [role, setRole] = useState("61a5f3da99ca3c5064ba5c6d");
   const [users, setUsers] = useState([]);
 
