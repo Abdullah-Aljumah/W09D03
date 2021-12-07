@@ -1,39 +1,35 @@
 const insitialState = {
-    user: null,
-    token: "",
-  };
-  
-  const signIn = (state = insitialState, action) => {
-    const { type, payload } = action;
-    switch (type) {
+  user: null,
+  token: "",
+};
 
-      case "LOGIN":
-        const { user, token } = payload;
-        return { user, token };
-  
-      case "LOGOUT":
-        localStorage.clear();
-        return { user: null, token: "" };
-      default:
-        return state;
-    }
+const signIn = (state = insitialState, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case "LOGIN":
+      const { user, token } = payload;
+      return { user, token };
+
+    case "LOGOUT":
+      localStorage.clear();
+      return { user: null, token: "" };
+    default:
+      return state;
+  }
+};
+
+export default signIn;
+
+export const login = (data) => {
+  return {
+    type: "LOGIN",
+    payload: data.data,
   };
-  
-  export default signIn;
-  
-  export const login = (data) => {
-    console.log("login page", data.data);
-  
-    return {
-      type: "LOGIN",
-      payload: data.data,
-    };
+};
+
+export const logout = (data) => {
+  return {
+    type: "LOGOUT",
+    payload: data,
   };
-  
-  export const logout = (data) => {
-    return {
-      type: "LOGOUT",
-      payload: data,
-    };
-  };
-  
+};

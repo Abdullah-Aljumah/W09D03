@@ -25,6 +25,7 @@ const task = (state = insitialState, action) => {
     case "NEW":
       const { newTask } = payload;
       let newArr = [...state.tasks, newTask];
+      console.log(newArr,"NEEEEEEEWWWWWWWAARRRR");
       return newArr;
 
     default:
@@ -35,7 +36,6 @@ const task = (state = insitialState, action) => {
 export default task;
 
 export const get_tasks = (data) => {
-  console.log("data", data.data);
   return {
     type: "GET",
     payload: data.data,
