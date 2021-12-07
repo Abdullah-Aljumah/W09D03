@@ -8,7 +8,7 @@ import { get_tasks } from "../../reducers/tasks";
 import { delete_tasks } from "../../reducers/tasks";
 import { update_tasks } from "../../reducers/tasks";
 import { new_tasks } from "../../reducers/tasks";
-import { get_tasks_admin } from "../../reducers/tasks";
+// import { get_tasks_admin } from "../../reducers/tasks";
 
 const Tasks = () => {
   const state = useSelector((state) => {
@@ -16,39 +16,59 @@ const Tasks = () => {
   });
   const dispatch = useDispatch();
 
+  const [id, setId] = useState("");
+  const [role, setRole] = useState("");
   const [edit, setEdit] = useState("");
   const [btn1, setBtn1] = useState(true);
   const [showHide, setShowHide] = useState(false);
 
+  // Use effects
+  // Get id from local storage
+  useEffect(() => {
+    setId(localStorage.getItem("user"));
+    setRole(localStorage.getItem("role"));
+  }, []);
+
+  // Invoke function get tasks from backend
   useEffect(() => {
     getTasks();
     // eslint-disable-next-line
-  }, []);
+  }, [id]);
 
+  useEffect(() => {
+    getTasksAdmin();
+    // eslint-disable-next-line
+  }, [role]);
+
+  // Get user tasks
   const getTasks = async () => {
-    let res = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/todoss/${state.signIn.user._id}`,
-      {
-        headers: { Authorization: `Bearer ${state.signIn.token}` },
-      }
-    );
-    const data = {
-      tasks: res.data.map((item) => {
-        return item;
-      }),
-    };
-    dispatch(get_tasks({ data }));
+    if (role === "61aca7fbcab490bd2fadfd62") {
+      console.log("HERE GET TASKS");
+      let res = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/todoss/${id}`,
+        {
+          headers: { Authorization: `Bearer ${state.signIn.token}` },
+        }
+      );
+
+      const data = {
+        tasks: res.data,
+      };
+      dispatch(get_tasks({ data }));
+    }
   };
 
-  const deleteTask = async (_id) => {
+  // Delete task
+  const deleteTask = async (id) => {
     // eslint-disable-next-line
     let deleteTask = await axios.delete(
-      `${process.env.REACT_APP_BASE_URL}/deleteTask/${_id}`,
+      `${process.env.REACT_APP_BASE_URL}/deleteTask/${id}`,
       {
         headers: { Authorization: `Bearer ${state.signIn.token}` },
       }
     );
 
+    // Re render
     getTasks();
     getTasksAdmin();
 
@@ -59,31 +79,30 @@ const Tasks = () => {
     dispatch(delete_tasks({ data }));
   };
 
+  // Get all tasks for admin
   const getTasksAdmin = async () => {
     // eslint-disable-next-line
-    let res = await axios.get(`${process.env.REACT_APP_BASE_URL}/tasks`, {
-      headers: { Authorization: `Bearer ${state.signIn.token}` },
-    });
+    if (role === "61a5f3cf99ca3c5064ba5c6b") {
+      let res = await axios.get(`${process.env.REACT_APP_BASE_URL}/tasks`, {
+        headers: { Authorization: `Bearer ${state.signIn.token}` },
+      });
 
-    const data = {
-      tasks: res.data.map((item) => {
-        return item;
-      }),
-    };
-    dispatch(get_tasks({ data }));
+      const data = {
+        tasks: res.data.map((item) => {
+          return item;
+        }),
+      };
+      dispatch(get_tasks({ data }));
+    }
   };
-
-  useEffect(() => {
-    getTasksAdmin();
-    // eslint-disable-next-line
-  }, []);
 
   const newTask = async (e) => {
     e.preventDefault();
-    console.log(e.target[0].value);
+    // console.log(e.target[0].value);
+    console.log(state, "state.signIn.user._id");
     // eslint-disable-next-line
     let res = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/newTask/${state.signIn.user._id}`,
+      `${process.env.REACT_APP_BASE_URL}/newTask/${id}`,
       { task: e.target[0].value },
       {
         headers: { Authorization: `Bearer ${state.signIn.token}` },
@@ -97,7 +116,11 @@ const Tasks = () => {
     dispatch(new_tasks({ data }));
 
     e.target[0].value = "";
-    getTasks();
+    if (role === "61aca7fbcab490bd2fadfd62") {
+      getTasks();
+    } else if (role === "61a5f3cf99ca3c5064ba5c6b") {
+      getTasksAdmin();
+    }
   };
 
   const updateTask = async (e, idTask) => {

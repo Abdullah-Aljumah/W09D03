@@ -7,14 +7,23 @@ const signIn = (state = insitialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case "LOGIN":
+      // eslint-disable-next-line
       const { user, token } = payload;
-      return { user, token };
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", payload.user._id);
+
+      return { user: payload.user, token: payload.token };
 
     case "LOGOUT":
       localStorage.clear();
       return { user: null, token: "" };
     default:
-      return state;
+      const tokenStorage = localStorage.getItem("token");
+      if (tokenStorage) {
+        return { token: tokenStorage };
+      } else {
+        return state;
+      }
   }
 };
 

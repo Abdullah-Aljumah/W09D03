@@ -8,9 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../reducers/login.js";
 const Login = () => {
   const state = useSelector((state) => {
-    return state
+    return state;
   });
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,7 +27,11 @@ const Login = () => {
       email: email,
       password: password,
     });
-    console.log("res.data.token", res.data.token);
+    console.log("res.data.token", res.data.result.role);
+    if(res.data.result.role === "61a5f3cf99ca3c5064ba5c6b") {
+      console.log("HERE");
+    }
+    localStorage.setItem("role",res.data.result.role)
     const data = {
       user: res.data.result,
       token: res.data.token,
