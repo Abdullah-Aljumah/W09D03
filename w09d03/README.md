@@ -40,3 +40,19 @@ user model
   password: { type: String, require: true },
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
 ```
+
+task model
+
+```bash
+ task: { type: String },
+  isDel: { type: Boolean, default: false },
+  isCompleted: { type: Boolean, default: false },
+  user: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+```
+
+role model
+
+```bash
+ role: { type: String },
+  permossion: { type: Array },
+```
