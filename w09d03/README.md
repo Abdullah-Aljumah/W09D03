@@ -32,11 +32,11 @@
 # Todo Backend
 
 ## Models
+
 user model
 
-``
+```bash
  email: { type: String, required: true, unique: true },
   password: { type: String, require: true },
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
-  ``
-
+```
