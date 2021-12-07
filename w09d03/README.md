@@ -85,3 +85,7 @@ role model
 | ----------- | -------- | ----------- | --------------- |
 | POST        | /newRole | Private     | Create new role |
 | GET         | /roles   | Private     | Get all roles   |
+
+## Author
+
+@Abdullah-Aljumah
