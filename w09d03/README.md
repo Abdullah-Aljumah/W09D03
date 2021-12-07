@@ -16,3 +16,6 @@
 
 # Todo fronend
 
+|      Path     |  Permissions  | Behavior |
+| --- | --- | --- |
+| /             |     Public    |Login,tasks|
