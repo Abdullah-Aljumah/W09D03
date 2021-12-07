@@ -18,4 +18,5 @@
 
 |      Path     |  Permissions  | Behavior |
 | --- | --- | --- |
-| /             |     Public    |Login,tasks|
+| /             |     Public    | Login, if you already login well show your tasks |
+| /register             |     Public    |  |
