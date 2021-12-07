@@ -8,6 +8,7 @@ const Register = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+      // eslint-disable-next-line
   const [role, setRole] = useState("61a5f3da99ca3c5064ba5c6d");
   const [users, setUsers] = useState([]);
 
@@ -19,6 +20,37 @@ const Register = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  const register = async () => {
+    let check = false;
+    // eslint-disable-next-line
+    users.map((item) => {
+      // eslint-disable-next-line
+      if (item.email == email) {
+        check = true;
+      }
+    });
+    if (check) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: " email alerady exists",
+      });
+    } else {
+      // eslint-disable-next-line
+      const res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/resgister`,
+        {
+          email,
+          password,
+        }
+      );
+    }
+  };
+
+  const login = () => {
+    navigate("/");
+  };
 
   return (
     <div>
@@ -40,7 +72,13 @@ const Register = () => {
           setPassword(e.target.value);
         }}
       />
-      <input type="submit" value="Register" className="btn btn-primary" />
+      <input
+        type="submit"
+        value="Register"
+        className="btn btn-primary"
+        onClick={register}
+      />
+      <p onClick={login}>Already have an account?</p>
     </div>
   );
 };
