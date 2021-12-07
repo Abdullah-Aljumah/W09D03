@@ -6,10 +6,9 @@ const insitialState = {
   const signIn = (state = insitialState, action) => {
     const { type, payload } = action;
     switch (type) {
-        
+
       case "LOGIN":
         const { user, token } = payload;
-        localStorage.setItem("token", token);
         return { user, token };
   
       case "LOGOUT":
