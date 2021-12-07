@@ -1,9 +1,19 @@
-import './App.css';
+import React from "react";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import Tasks from "./components/Tasks";
+import Register from "./components/Register";
+import "./App.css"
 
+import { Routes, Route } from "react-router";
 function App() {
   return (
     <div className="App">
-     <h1>APP</h1>
+      <Routes>
+        <Route exact path="/register" element={<Register />} />
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/tasks" element={<Tasks />} />
+      </Routes>
     </div>
   );
 }
