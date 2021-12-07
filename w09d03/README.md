@@ -57,11 +57,31 @@ role model
   permossion: { type: Array },
 ```
 
-Backend routes
-| HTTP METHOD | URL | Permissions | Behavior |
-| ---- | --------- | ----------- | ------ |
-| POST| /newTask/:\_id | Public | Create new task |
-| PUT| /deletetask/:\_id | Public | Soft delete task |
-| PUT| /update/:\_id | Public | Toggle is complete (true / false) |
-| PUT| /upadteVal/:\_id | Public | Update task |
-| GET| /tasks | Private | Update task |
+# Backend routes
+
+## Tasks
+
+| HTTP METHOD | URL               | Permissions | Behavior                          |
+| ----------- | ----------------- | ----------- | --------------------------------- |
+| POST        | /newTask/:\_id    | Public      | Create new task                   |
+| PUT         | /deletetask/:\_id | Public      | Soft delete task                  |
+| PUT         | /update/:\_id     | Public      | Toggle is complete (true / false) |
+| PUT         | /upadteVal/:\_id  | Public      | Update task                       |
+| GET         | /todoss/:\_id     | Public      | Get task by id                    |
+| GET         | /tasks            | Private     | Get all users task                |
+
+## User
+
+| HTTP METHOD | URL               | Permissions | Behavior        |
+| ----------- | ----------------- | ----------- | --------------- |
+| DELETE      | /deleteUser/:\_id | Private     | Delete user     |
+| POST        | /register         | Public      | Create new user |
+| POST        | /login            | Public      | Login           |
+| GET         | /users            | Private     | Get all users   |
+
+## Role
+
+| HTTP METHOD | URL      | Permissions | Behavior        |
+| ----------- | -------- | ----------- | --------------- |
+| POST        | /newRole | Private     | Create new role |
+| GET         | /roles   | Private     | Get all roles   |
