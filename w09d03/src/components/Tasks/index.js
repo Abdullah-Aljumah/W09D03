@@ -175,8 +175,9 @@ const Tasks = () => {
               <div key={item._id} className="task">
                 {" "}
                 <h1>{item.task}</h1>
+             
                 <button
-                  className="btn btn-danger inpt2"
+                  className="btn btn-danger inpt2" id="gg"
                   onClick={() => deleteTask(item._id)}
                 >
                   Delete
