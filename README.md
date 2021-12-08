@@ -86,6 +86,10 @@ role model
 | POST        | /newRole | Private     | Create new role |
 | GET         | /roles   | Private     | Get all roles   |
 
+# UML frontend
+
+![UML front todo](https://user-images.githubusercontent.com/92247941/145216236-62379e90-1a76-4f68-b74f-00b2c659ec97.png)
+
 ## Author
 
 @Abdullah-Aljumah
